@@ -19,7 +19,7 @@ describe('install command', () => {
     expect(console.log).toHaveBeenCalledWith(
       'Installing necessary packages...',
     );
-    expect(execCommand).toHaveBeenCalledTimes(11); // One for each package
+    expect(execCommand).toHaveBeenCalledTimes(12); // One for each package
     expect(execCommand).toHaveBeenCalledWith('npm install canister-manager');
     expect(execCommand).toHaveBeenCalledWith(
       'npm install expo-crypto-universal',
