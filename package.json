@@ -1,19 +1,20 @@
 {
   "name": "expo-icp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI tool for Expo ICP integration",
   "type": "module",
   "main": "./dist/cli.js",
   "bin": {
     "expo-icp": "./dist/cli.js"
   },
+  "preferGlobal": true,
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "build": "npm run typecheck && vite build",
+    "build": "npm run typecheck && vite build && chmod +x dist/cli.js",
     "test": "vitest --run",
     "typecheck": "tsc --noEmit",
     "test:coverage": "vitest run --coverage",
