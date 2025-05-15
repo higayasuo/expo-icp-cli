@@ -8,7 +8,7 @@ const program = new Command();
 program
   .name('expo-icp')
   .description('CLI tool for Expo ICP integration')
-  .version('0.1.8');
+  .version('0.1.9');
 
 program
   .command('install')
