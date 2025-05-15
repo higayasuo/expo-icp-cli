@@ -1,0 +1,44 @@
+# Source files
+src/
+tsconfig.json
+vite.config.ts
+
+# Test files
+__tests__/
+coverage/
+*.spec.ts
+*.test.ts
+
+# Development files
+.git/
+.github/
+.gitignore
+.editorconfig
+.prettierrc
+.eslintrc
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build files (except dist)
+*.tsbuildinfo
+
+# Documentation
+CHANGELOG.md
+docs/
+
+# Environment files
+.env*
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# npm pack
+*.tgz
