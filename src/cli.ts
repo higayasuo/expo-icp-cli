@@ -13,7 +13,12 @@ program
 program
   .command('install')
   .description('Install necessary packages for Expo ICP integration')
-  .action(install);
+  .option(
+    '--ii-integration-helpers',
+    'Install II integration helper packages',
+    false,
+  )
+  .action((options) => install(options));
 
 // Only parse arguments if this file is being run directly
 if (import.meta.url && import.meta.url.startsWith('file://')) {

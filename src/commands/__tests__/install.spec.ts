@@ -14,16 +14,35 @@ describe('install command', () => {
     vi.spyOn(process, 'exit').mockImplementation(() => undefined as never);
   });
 
-  it('should install all required packages', async () => {
-    await install();
+  it('should install all default packages when no options provided', async () => {
+    await install({});
     expect(console.log).toHaveBeenCalledWith(
       'Installing necessary packages...',
+      {},
     );
-    expect(execCommand).toHaveBeenCalledTimes(12); // One for each package
+    expect(execCommand).toHaveBeenCalledTimes(12); // One for each default package
     expect(execCommand).toHaveBeenCalledWith('npm install canister-manager');
     expect(execCommand).toHaveBeenCalledWith(
       'npm install expo-crypto-universal',
     );
-    // ... and so on for other packages
+  });
+
+  it('should install only II integration helper packages when --ii-integration-helpers is true', async () => {
+    await install({ iiIntegrationHelpers: true });
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing necessary packages...',
+      { iiIntegrationHelpers: true },
+    );
+    expect(execCommand).toHaveBeenCalledTimes(4); // One for each II integration helper package
+    expect(execCommand).toHaveBeenCalledWith('npm install expo-icp');
+    expect(execCommand).toHaveBeenCalledWith(
+      'npm install expo-icp-app-connect-helpers',
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      'npm install expo-icp-frontend-helpers',
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      'npm install ii-integration-helpers',
+    );
   });
 });
