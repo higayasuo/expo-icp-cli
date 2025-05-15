@@ -19,11 +19,8 @@ export default defineConfig({
         'util',
         'os',
         'crypto',
-        'child_process'
+        'child_process',
       ],
     },
-    target: 'node18',
-    minify: false,
-    sourcemap: true,
   },
 });
