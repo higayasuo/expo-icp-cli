@@ -1,6 +1,7 @@
 import { execCommand } from '../utils/execCommand';
 
 const packages = [
+  'expo-icp',
   'canister-manager',
   'expo-crypto-universal',
   'expo-crypto-universal-native',
