@@ -4,6 +4,14 @@ A command-line interface tool for integrating Internet Computer Protocol (ICP) w
 
 ## Usage
 
+First, install the package locally:
+
+```bash
+npm install expo-icp
+```
+
+Then, you can use the CLI:
+
 ```bash
 npx expo-icp <command> [options]
 ```
@@ -12,7 +20,7 @@ npx expo-icp <command> [options]
 
 ### install
 
-Installs all necessary packages for Expo ICP integration.
+Installs all necessary packages for Expo ICP integration, including expo-icp itself:
 
 ```bash
 npx expo-icp install
@@ -20,6 +28,7 @@ npx expo-icp install
 
 This command will install the following packages:
 
+- expo-icp
 - canister-manager
 - expo-crypto-universal
 - expo-crypto-universal-native
