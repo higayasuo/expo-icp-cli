@@ -16,6 +16,12 @@ Then, you can use the CLI:
 npx expo-icp <command> [options]
 ```
 
+Or, if you want to run it without installing:
+
+```bash
+npx -p expo-icp@latest expo-icp <command> [options]
+```
+
 ## Available Commands
 
 ### install
