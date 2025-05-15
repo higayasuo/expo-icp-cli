@@ -7,7 +7,6 @@
   "bin": {
     "expo-icp": "./dist/cli.js"
   },
-  "preferGlobal": true,
   "files": [
     "dist",
     "README.md",
