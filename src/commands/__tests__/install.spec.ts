@@ -41,10 +41,9 @@ describe('install command', () => {
       'Installing outdated packages:',
       defaultPackages.join(', '),
     );
-    defaultPackages.forEach((pkg) => {
-      expect(console.log).toHaveBeenCalledWith(`Installing ${pkg}...`);
-      expect(execCommand).toHaveBeenCalledWith(`npm install ${pkg}`);
-    });
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${defaultPackages.join(' ')}`,
+    );
   });
 
   it('should install only II integration helper packages when --ii-integration-helpers is true', async () => {
@@ -65,9 +64,8 @@ describe('install command', () => {
       'Installing outdated packages:',
       iiIntegrationHelpersPackages.join(', '),
     );
-    iiIntegrationHelpersPackages.forEach((pkg) => {
-      expect(console.log).toHaveBeenCalledWith(`Installing ${pkg}...`);
-      expect(execCommand).toHaveBeenCalledWith(`npm install ${pkg}`);
-    });
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${iiIntegrationHelpersPackages.join(' ')}`,
+    );
   });
 });

@@ -40,8 +40,5 @@ export const install = async (options: InstallOptions) => {
   }
 
   console.log('Installing outdated packages:', outdatedPackages.join(', '));
-  outdatedPackages.forEach((pkg) => {
-    console.log(`Installing ${pkg}...`);
-    execCommand(`npm install ${pkg}`);
-  });
+  execCommand(`npm install ${outdatedPackages.join(' ')}`);
 };
