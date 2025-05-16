@@ -36,9 +36,9 @@ describe('getOutdatedPackages', () => {
 
   it('should return empty array when no packages are outdated', () => {
     const targetPackages = ['package-a', 'package-b'];
-    vi.mocked(execCommand).mockImplementation(() => {
-      throw new Error('npm outdated');
-    });
+    const mockOutput = JSON.stringify({});
+
+    vi.mocked(execCommand).mockReturnValue(mockOutput);
 
     const result = getOutdatedPackages(targetPackages);
 
@@ -48,13 +48,10 @@ describe('getOutdatedPackages', () => {
     expect(result).toEqual([]);
   });
 
-  it('should throw error for other types of errors', () => {
+  it('should throw error for invalid JSON output', () => {
     const targetPackages = ['package-a', 'package-b'];
-    const error = new Error('Network error');
-    vi.mocked(execCommand).mockImplementation(() => {
-      throw error;
-    });
+    vi.mocked(execCommand).mockReturnValue('invalid json');
 
-    expect(() => getOutdatedPackages(targetPackages)).toThrow('Network error');
+    expect(() => getOutdatedPackages(targetPackages)).toThrow();
   });
 });

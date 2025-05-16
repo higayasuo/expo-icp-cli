@@ -28,7 +28,6 @@ type InstallOptions = {
 };
 
 export const install = async (options: InstallOptions) => {
-  console.log('Installing necessary packages...', options);
   const packages = options.iiIntegrationHelpers
     ? iiIntegrationHelpersPackages
     : defaultPackages;
@@ -36,12 +35,11 @@ export const install = async (options: InstallOptions) => {
   const outdatedPackages = getOutdatedPackages(packages);
 
   if (outdatedPackages.length === 0) {
-    console.log('Dependencies are up to date');
+    console.log('No packages need to be installed.');
     return;
   }
 
-  console.log('Outdated packages:', outdatedPackages.join(', '));
-
+  console.log('Installing outdated packages:', outdatedPackages);
   outdatedPackages.forEach((pkg) => {
     console.log(`Installing ${pkg}...`);
     execCommand(`npm install ${pkg}`);
