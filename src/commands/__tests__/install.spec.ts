@@ -1,9 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { install } from '../install';
 import { execCommand } from '../../utils/execCommand';
+import { getOutdatedPackages } from '../../utils/getOutdatedPackages';
 
 vi.mock('../../utils/execCommand', () => ({
   execCommand: vi.fn(),
+}));
+
+vi.mock('../../utils/getOutdatedPackages', () => ({
+  getOutdatedPackages: vi.fn(),
 }));
 
 describe('install command', () => {
@@ -15,34 +20,60 @@ describe('install command', () => {
   });
 
   it('should install all default packages when no options provided', async () => {
+    const defaultPackages = [
+      'expo-icp',
+      'canister-manager',
+      'expo-crypto-universal',
+      'expo-crypto-universal-native',
+      'expo-crypto-universal-web',
+      'expo-icp-app-connect',
+      'expo-icp-app-connect-helpers',
+      'expo-icp-frontend-helpers',
+      'expo-ii-integration',
+      'expo-storage-universal',
+      'expo-storage-universal-native',
+      'expo-storage-universal-web',
+    ];
+
+    vi.mocked(getOutdatedPackages).mockReturnValue(defaultPackages);
+
     await install({});
+
     expect(console.log).toHaveBeenCalledWith(
       'Installing necessary packages...',
       {},
     );
-    expect(execCommand).toHaveBeenCalledTimes(12); // One for each default package
-    expect(execCommand).toHaveBeenCalledWith('npm install canister-manager');
-    expect(execCommand).toHaveBeenCalledWith(
-      'npm install expo-crypto-universal',
-    );
+    expect(getOutdatedPackages).toHaveBeenCalledWith(defaultPackages);
+    expect(execCommand).toHaveBeenCalledTimes(12);
+    defaultPackages.forEach((pkg) => {
+      expect(execCommand).toHaveBeenCalledWith(`npm install ${pkg}`);
+    });
   });
 
   it('should install only II integration helper packages when --ii-integration-helpers is true', async () => {
+    const iiIntegrationHelpersPackages = [
+      'expo-icp',
+      'expo-icp-app-connect-helpers',
+      'expo-icp-frontend-helpers',
+      'ii-integration-helpers',
+    ];
+
+    vi.mocked(getOutdatedPackages).mockReturnValue(
+      iiIntegrationHelpersPackages,
+    );
+
     await install({ iiIntegrationHelpers: true });
+
     expect(console.log).toHaveBeenCalledWith(
       'Installing necessary packages...',
       { iiIntegrationHelpers: true },
     );
-    expect(execCommand).toHaveBeenCalledTimes(4); // One for each II integration helper package
-    expect(execCommand).toHaveBeenCalledWith('npm install expo-icp');
-    expect(execCommand).toHaveBeenCalledWith(
-      'npm install expo-icp-app-connect-helpers',
+    expect(getOutdatedPackages).toHaveBeenCalledWith(
+      iiIntegrationHelpersPackages,
     );
-    expect(execCommand).toHaveBeenCalledWith(
-      'npm install expo-icp-frontend-helpers',
-    );
-    expect(execCommand).toHaveBeenCalledWith(
-      'npm install ii-integration-helpers',
-    );
+    expect(execCommand).toHaveBeenCalledTimes(4);
+    iiIntegrationHelpersPackages.forEach((pkg) => {
+      expect(execCommand).toHaveBeenCalledWith(`npm install ${pkg}`);
+    });
   });
 });

@@ -26,13 +26,19 @@ npx -p expo-icp@latest expo-icp <command> [options]
 
 ### install
 
-Installs all necessary packages for Expo ICP integration, including expo-icp itself:
+Installs necessary packages for Expo ICP integration. By default, it installs all required packages. You can use the `--ii-integration-helpers` option to install only II integration helper packages.
 
 ```bash
+# Install all required packages
 npx expo-icp install
+
+# Install only II integration helper packages
+npx expo-icp install --ii-integration-helpers
 ```
 
-This command will install the following packages:
+#### Default Packages
+
+When run without options, the command installs the following packages:
 
 - expo-icp
 - canister-manager
@@ -46,6 +52,15 @@ This command will install the following packages:
 - expo-storage-universal
 - expo-storage-universal-native
 - expo-storage-universal-web
+
+#### II Integration Helper Packages
+
+When run with `--ii-integration-helpers`, the command installs only these packages:
+
+- expo-icp
+- expo-icp-app-connect-helpers
+- expo-icp-frontend-helpers
+- ii-integration-helpers
 
 ## Development
 

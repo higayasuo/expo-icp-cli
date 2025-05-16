@@ -1,10 +1,10 @@
 import { execSync } from 'child_process';
 
-export const execCommand = (command: string) => {
+export const execCommand = (command: string): string => {
   try {
-    execSync(command, { stdio: 'inherit' });
+    return execSync(command, { encoding: 'utf-8' });
   } catch (error) {
     console.error(`Command execution failed: ${command}`);
     throw error;
   }
-}
+};

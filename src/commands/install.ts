@@ -1,4 +1,5 @@
 import { execCommand } from '../utils/execCommand';
+import { getOutdatedPackages } from '../utils/getOutdatedPackages';
 
 const defaultPackages = [
   'expo-icp',
@@ -31,7 +32,17 @@ export const install = async (options: InstallOptions) => {
   const packages = options.iiIntegrationHelpers
     ? iiIntegrationHelpersPackages
     : defaultPackages;
-  packages.forEach((pkg) => {
+
+  const outdatedPackages = getOutdatedPackages(packages);
+
+  if (outdatedPackages.length === 0) {
+    console.log('Dependencies are up to date');
+    return;
+  }
+
+  console.log('Outdated packages:', outdatedPackages.join(', '));
+
+  outdatedPackages.forEach((pkg) => {
     console.log(`Installing ${pkg}...`);
     execCommand(`npm install ${pkg}`);
   });
