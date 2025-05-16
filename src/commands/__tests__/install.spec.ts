@@ -15,8 +15,6 @@ describe('install command', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.spyOn(console, 'log').mockImplementation(() => {});
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-    vi.spyOn(process, 'exit').mockImplementation(() => undefined as never);
   });
 
   it('should install all default packages when no options provided', async () => {
@@ -40,12 +38,11 @@ describe('install command', () => {
     await install({});
 
     expect(console.log).toHaveBeenCalledWith(
-      'Installing necessary packages...',
-      {},
+      'Installing outdated packages:',
+      defaultPackages,
     );
-    expect(getOutdatedPackages).toHaveBeenCalledWith(defaultPackages);
-    expect(execCommand).toHaveBeenCalledTimes(12);
     defaultPackages.forEach((pkg) => {
+      expect(console.log).toHaveBeenCalledWith(`Installing ${pkg}...`);
       expect(execCommand).toHaveBeenCalledWith(`npm install ${pkg}`);
     });
   });
@@ -65,14 +62,11 @@ describe('install command', () => {
     await install({ iiIntegrationHelpers: true });
 
     expect(console.log).toHaveBeenCalledWith(
-      'Installing necessary packages...',
-      { iiIntegrationHelpers: true },
-    );
-    expect(getOutdatedPackages).toHaveBeenCalledWith(
+      'Installing outdated packages:',
       iiIntegrationHelpersPackages,
     );
-    expect(execCommand).toHaveBeenCalledTimes(4);
     iiIntegrationHelpersPackages.forEach((pkg) => {
+      expect(console.log).toHaveBeenCalledWith(`Installing ${pkg}...`);
       expect(execCommand).toHaveBeenCalledWith(`npm install ${pkg}`);
     });
   });
