@@ -4,20 +4,6 @@ A command-line interface tool for integrating Internet Computer Protocol (ICP) w
 
 ## Usage
 
-First, install the package locally:
-
-```bash
-npm install expo-icp
-```
-
-Then, you can use the CLI:
-
-```bash
-npx expo-icp <command> [options]
-```
-
-Or, if you want to run it without installing:
-
 ```bash
 npx -p expo-icp@latest expo-icp <command> [options]
 ```
@@ -30,10 +16,10 @@ Installs necessary packages for Expo ICP integration. By default, it installs al
 
 ```bash
 # Install all required packages
-npx expo-icp install
+npx -p expo-icp@latest expo-icp install
 
 # Install only II integration helper packages
-npx expo-icp install --ii-integration-helpers
+npx -p expo-icp@latest expo-icp install --ii-integration-helpers
 ```
 
 #### Default Packages
