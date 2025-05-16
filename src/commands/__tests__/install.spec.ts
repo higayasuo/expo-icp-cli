@@ -39,7 +39,7 @@ describe('install command', () => {
 
     expect(console.log).toHaveBeenCalledWith(
       'Installing outdated packages:',
-      defaultPackages,
+      defaultPackages.join(', '),
     );
     defaultPackages.forEach((pkg) => {
       expect(console.log).toHaveBeenCalledWith(`Installing ${pkg}...`);
@@ -63,7 +63,7 @@ describe('install command', () => {
 
     expect(console.log).toHaveBeenCalledWith(
       'Installing outdated packages:',
-      iiIntegrationHelpersPackages,
+      iiIntegrationHelpersPackages.join(', '),
     );
     iiIntegrationHelpersPackages.forEach((pkg) => {
       expect(console.log).toHaveBeenCalledWith(`Installing ${pkg}...`);
