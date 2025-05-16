@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.14] - 2025-05-16
+
+### Changed
+
+- Improved error handling in getOutdatedPackages function
+- Updated tests to properly handle npm outdated command errors
+- Added proper error propagation for npm outdated command failures
+
 ## [0.1.13] - 2025-05-16
 
 ### Changed
@@ -79,8 +87,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Simplified bin field in package.json to use direct path
-- Improved npx compatibility by using simpler binary configuration
+- Fixed bin field format in package.json to use object notation
+- Resolved npm executable detection issue
+- Fixed version mismatch in npm package resolution
 
 ## [0.1.2] - 2025-05-15
 
