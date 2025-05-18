@@ -12,7 +12,10 @@ npx -p expo-icp@latest expo-icp <command> [options]
 
 ### install
 
-Installs necessary packages for Expo ICP integration. By default, it installs all required packages. You can use the `--ii-integration-helpers` option to install only II integration helper packages.
+Installs necessary packages for Expo ICP integration. By default, it installs all required packages. You can use the following options to install specific package sets:
+
+- `--ii-integration-helpers`: Install only II integration helper packages
+- `--expo-icp-helpers`: Install only Expo ICP helper packages
 
 ```bash
 # Install all required packages
@@ -20,13 +23,15 @@ npx -p expo-icp@latest expo-icp install
 
 # Install only II integration helper packages
 npx -p expo-icp@latest expo-icp install --ii-integration-helpers
+
+# Install only Expo ICP helper packages
+npx -p expo-icp@latest expo-icp install --expo-icp-helpers
 ```
 
 #### Default Packages
 
 When run without options, the command installs the following packages:
 
-- expo-icp
 - canister-manager
 - expo-crypto-universal
 - expo-crypto-universal-native
@@ -43,10 +48,16 @@ When run without options, the command installs the following packages:
 
 When run with `--ii-integration-helpers`, the command installs only these packages:
 
-- expo-icp
 - expo-icp-app-connect-helpers
 - expo-icp-frontend-helpers
 - ii-integration-helpers
+
+#### Expo ICP Helper Packages
+
+When run with `--expo-icp-helpers`, the command installs only these packages:
+
+- expo-icp-app-connect-helpers
+- expo-icp-frontend-helpers
 
 ## Development
 
