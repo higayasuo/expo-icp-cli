@@ -2,7 +2,6 @@ import { execCommand } from '../utils/execCommand';
 import { getOutdatedPackages } from '../utils/getOutdatedPackages';
 
 const defaultPackages = [
-  'expo-icp',
   'canister-manager',
   'expo-crypto-universal',
   'expo-crypto-universal-native',
@@ -17,20 +16,35 @@ const defaultPackages = [
 ];
 
 const iiIntegrationHelpersPackages = [
-  'expo-icp',
   'expo-icp-app-connect-helpers',
   'expo-icp-frontend-helpers',
   'ii-integration-helpers',
 ];
 
-type InstallOptions = {
+const expoIcpHelpersPackages = [
+  'expo-icp-app-connect-helpers',
+  'expo-icp-frontend-helpers',
+];
+
+export type InstallOptions = {
   iiIntegrationHelpers?: boolean;
+  expoIcpHelpers?: boolean;
 };
 
-export const install = async (options: InstallOptions) => {
-  const packages = options.iiIntegrationHelpers
-    ? iiIntegrationHelpersPackages
-    : defaultPackages;
+export type InstallCommand = (options: InstallOptions) => Promise<void>;
+
+export const getPackages = (options: InstallOptions) => {
+  if (options.iiIntegrationHelpers) {
+    return iiIntegrationHelpersPackages;
+  }
+  if (options.expoIcpHelpers) {
+    return expoIcpHelpersPackages;
+  }
+  return defaultPackages;
+};
+
+export const install: InstallCommand = async (options) => {
+  const packages = getPackages(options);
 
   const outdatedPackages = getOutdatedPackages(packages);
 

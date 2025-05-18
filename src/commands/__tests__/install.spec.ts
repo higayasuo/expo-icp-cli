@@ -19,7 +19,6 @@ describe('install command', () => {
 
   it('should install all default packages when no options provided', async () => {
     const defaultPackages = [
-      'expo-icp',
       'canister-manager',
       'expo-crypto-universal',
       'expo-crypto-universal-native',
@@ -48,7 +47,6 @@ describe('install command', () => {
 
   it('should install only II integration helper packages when --ii-integration-helpers is true', async () => {
     const iiIntegrationHelpersPackages = [
-      'expo-icp',
       'expo-icp-app-connect-helpers',
       'expo-icp-frontend-helpers',
       'ii-integration-helpers',
@@ -66,6 +64,25 @@ describe('install command', () => {
     );
     expect(execCommand).toHaveBeenCalledWith(
       `npm install ${iiIntegrationHelpersPackages.join(' ')}`,
+    );
+  });
+
+  it('should install only Expo ICP helper packages when --expo-icp-helpers is true', async () => {
+    const expoIcpHelpersPackages = [
+      'expo-icp-app-connect-helpers',
+      'expo-icp-frontend-helpers',
+    ];
+
+    vi.mocked(getOutdatedPackages).mockReturnValue(expoIcpHelpersPackages);
+
+    await install({ expoIcpHelpers: true });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing outdated packages:',
+      expoIcpHelpersPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expoIcpHelpersPackages.join(' ')}`,
     );
   });
 });
