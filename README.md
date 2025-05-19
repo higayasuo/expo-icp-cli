@@ -10,27 +10,45 @@ npx -p expo-icp@latest expo-icp <command> [options]
 
 ## Available Commands
 
-### install
+### setup
 
-Installs necessary packages for Expo ICP integration. By default, it installs all required packages. You can use the following options to install specific package sets:
+Sets up a new project for Expo ICP integration by installing all recommended packages. You can use the following options to install specific package sets:
 
 - `--ii-integration-helpers`: Install only II integration helper packages
 - `--expo-icp-helpers`: Install only Expo ICP helper packages
 
 ```bash
-# Install all required packages
-npx -p expo-icp@latest expo-icp install
+# Install all recommended packages
+npx -p expo-icp@latest expo-icp setup
 
 # Install only II integration helper packages
-npx -p expo-icp@latest expo-icp install --ii-integration-helpers
+npx -p expo-icp@latest expo-icp setup --ii-integration-helpers
 
 # Install only Expo ICP helper packages
+npx -p expo-icp@latest expo-icp setup --expo-icp-helpers
+```
+
+### install
+
+Updates outdated packages in an existing project. By default, it updates all required packages. You can use the following options to update specific package sets:
+
+- `--ii-integration-helpers`: Update only II integration helper packages
+- `--expo-icp-helpers`: Update only Expo ICP helper packages
+
+```bash
+# Update all outdated packages
+npx -p expo-icp@latest expo-icp install
+
+# Update only II integration helper packages
+npx -p expo-icp@latest expo-icp install --ii-integration-helpers
+
+# Update only Expo ICP helper packages
 npx -p expo-icp@latest expo-icp install --expo-icp-helpers
 ```
 
 #### Default Packages
 
-When run without options, the command installs the following packages:
+The following packages are included in the default installation:
 
 - canister-manager
 - expo-crypto-universal
@@ -46,7 +64,7 @@ When run without options, the command installs the following packages:
 
 #### II Integration Helper Packages
 
-When run with `--ii-integration-helpers`, the command installs only these packages:
+When using `--ii-integration-helpers`, these packages are installed:
 
 - expo-icp-app-connect-helpers
 - expo-icp-frontend-helpers
@@ -54,7 +72,7 @@ When run with `--ii-integration-helpers`, the command installs only these packag
 
 #### Expo ICP Helper Packages
 
-When run with `--expo-icp-helpers`, the command installs only these packages:
+When using `--expo-icp-helpers`, these packages are installed:
 
 - expo-icp-app-connect-helpers
 - expo-icp-frontend-helpers

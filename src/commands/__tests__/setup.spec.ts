@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { install } from '../install';
+import { setup } from '../setup';
 import { execCommand } from '../../utils/execCommand';
-import { getOutdatedPackages } from '../../utils/getOutdatedPackages';
 import {
   defaultPackages,
   iiIntegrationHelpersPackages,
@@ -12,23 +11,17 @@ vi.mock('../../utils/execCommand', () => ({
   execCommand: vi.fn(),
 }));
 
-vi.mock('../../utils/getOutdatedPackages', () => ({
-  getOutdatedPackages: vi.fn(),
-}));
-
-describe('install command', () => {
+describe('setup command', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.spyOn(console, 'log').mockImplementation(() => {});
   });
 
   it('should install all default packages when no options provided', async () => {
-    vi.mocked(getOutdatedPackages).mockReturnValue(defaultPackages);
-
-    await install({});
+    await setup({});
 
     expect(console.log).toHaveBeenCalledWith(
-      'Installing outdated packages:',
+      'Installing packages:',
       defaultPackages.join(', '),
     );
     expect(execCommand).toHaveBeenCalledWith(
@@ -37,14 +30,10 @@ describe('install command', () => {
   });
 
   it('should install only II integration helper packages when --ii-integration-helpers is true', async () => {
-    vi.mocked(getOutdatedPackages).mockReturnValue(
-      iiIntegrationHelpersPackages,
-    );
-
-    await install({ iiIntegrationHelpers: true });
+    await setup({ iiIntegrationHelpers: true });
 
     expect(console.log).toHaveBeenCalledWith(
-      'Installing outdated packages:',
+      'Installing packages:',
       iiIntegrationHelpersPackages.join(', '),
     );
     expect(execCommand).toHaveBeenCalledWith(
@@ -53,27 +42,14 @@ describe('install command', () => {
   });
 
   it('should install only Expo ICP helper packages when --expo-icp-helpers is true', async () => {
-    vi.mocked(getOutdatedPackages).mockReturnValue(expoIcpHelpersPackages);
-
-    await install({ expoIcpHelpers: true });
+    await setup({ expoIcpHelpers: true });
 
     expect(console.log).toHaveBeenCalledWith(
-      'Installing outdated packages:',
+      'Installing packages:',
       expoIcpHelpersPackages.join(', '),
     );
     expect(execCommand).toHaveBeenCalledWith(
       `npm install ${expoIcpHelpersPackages.join(' ')}`,
     );
-  });
-
-  it('should not install any packages when no packages are outdated', async () => {
-    vi.mocked(getOutdatedPackages).mockReturnValue([]);
-
-    await install({});
-
-    expect(console.log).toHaveBeenCalledWith(
-      'No packages need to be installed.',
-    );
-    expect(execCommand).not.toHaveBeenCalled();
   });
 });

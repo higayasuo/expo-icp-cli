@@ -1,7 +1,8 @@
 import { Command } from 'commander';
 import packageJson from '../../package.json';
-import { InstallCommand } from '../commands/install';
+import { InstallCommand } from '../commands/installCommon';
 import { buildInstallCommand } from './buildInstallCommand';
+import { buildSetupCommand } from './buildSetupCommand';
 
 /**
  * Type definition for available commands in the CLI
@@ -9,6 +10,8 @@ import { buildInstallCommand } from './buildInstallCommand';
 type Commands = {
   /** Command for installing necessary packages */
   install: InstallCommand;
+  /** Command for setting up the project */
+  setup: InstallCommand;
 };
 
 /**
@@ -34,6 +37,7 @@ export const buildProgram = (commands: Commands) => {
     .version(packageJson.version);
 
   buildInstallCommand(program, commands.install);
+  buildSetupCommand(program, commands.setup);
 
   return program;
 };

@@ -2,6 +2,7 @@
 
 import { Command } from 'commander';
 import { install } from './commands/install';
+import { setup } from './commands/setup';
 import { buildProgram } from './program/buildProgram';
 
 if (
@@ -9,6 +10,6 @@ if (
   import.meta.url.startsWith('file://') &&
   process.env.NODE_ENV !== 'test'
 ) {
-  const program = buildProgram({ install });
+  const program = buildProgram({ install, setup });
   program.parse();
 }

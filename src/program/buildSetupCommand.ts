@@ -2,23 +2,20 @@ import { Command } from 'commander';
 import { InstallCommand } from '../commands/installCommon';
 
 /**
- * Builds the install command for the Expo ICP integration CLI tool.
+ * Builds the setup command for the Expo ICP integration CLI tool.
  *
  * @param {Command} program - The commander program instance.
- * @param {InstallCommand} install - The install command action.
+ * @param {InstallCommand} setup - The setup command action.
  */
-export const buildInstallCommand = (
-  program: Command,
-  install: InstallCommand,
-) => {
+export const buildSetupCommand = (program: Command, setup: InstallCommand) => {
   program
-    .command('install')
-    .description('Install necessary packages for Expo ICP integration')
+    .command('setup')
+    .description('Setup the project for Expo ICP integration')
     .option(
       '--ii-integration-helpers',
       'Install II integration helper packages',
       false,
     )
     .option('--expo-icp-helpers', 'Install Expo ICP helper packages', false)
-    .action(install);
+    .action(setup);
 };
