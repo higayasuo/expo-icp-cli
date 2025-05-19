@@ -1,6 +1,6 @@
 {
   "name": "expo-icp",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "CLI tool for Expo ICP integration",
   "type": "module",
   "main": "./dist/cli.js",

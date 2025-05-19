@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.22] - 2025-05-19
+
+### Added
+
+- Added `--expo-crypto-universal` option to install Expo Crypto Universal packages
+- Added `--expo-storage-universal` option to install Expo Storage Universal packages
+
+### Changed
+
+- Updated package lists in README.md to reflect correct dependencies for each option
+- Reorganized default installation package list for better readability
+- Updated package lists for `--expo-icp-helpers`, `--ii-integration-helpers`, and `--expo-icp-app-connect` options
+- Added missing dependencies to `--expo-icp-app-connect` option
+
 ## [0.1.21] - 2025-05-19
 
 ### Changed

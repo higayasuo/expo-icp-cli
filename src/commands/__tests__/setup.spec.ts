@@ -6,6 +6,8 @@ import {
   iiIntegrationHelpersPackages,
   expoIcpHelpersPackages,
   expoIcpAppConnectPackages,
+  expoCryptoUniversalPackages,
+  expoStorageUniversalPackages,
 } from '../packages';
 
 vi.mock('../../utils/execCommand', () => ({
@@ -63,6 +65,90 @@ describe('setup command', () => {
     );
     expect(execCommand).toHaveBeenCalledWith(
       `npm install ${expoIcpAppConnectPackages.join(' ')}`,
+    );
+  });
+
+  it('should install only Expo crypto universal packages when --expo-crypto-universal is true', async () => {
+    await setup({ expoCryptoUniversal: true });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing packages:',
+      expoCryptoUniversalPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expoCryptoUniversalPackages.join(' ')}`,
+    );
+  });
+
+  it('should install only Expo storage universal packages when --expo-storage-universal is true', async () => {
+    await setup({ expoStorageUniversal: true });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing packages:',
+      expoStorageUniversalPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expoStorageUniversalPackages.join(' ')}`,
+    );
+  });
+
+  it('should install both II integration helper and Expo ICP helper packages when both options are true', async () => {
+    const expectedPackages = [
+      ...new Set([...expoIcpHelpersPackages, ...iiIntegrationHelpersPackages]),
+    ];
+    await setup({ iiIntegrationHelpers: true, expoIcpHelpers: true });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing packages:',
+      expectedPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expectedPackages.join(' ')}`,
+    );
+  });
+
+  it('should install both Expo crypto universal and Expo storage universal packages when both options are true', async () => {
+    const expectedPackages = [
+      ...new Set([
+        ...expoCryptoUniversalPackages,
+        ...expoStorageUniversalPackages,
+      ]),
+    ];
+    await setup({ expoCryptoUniversal: true, expoStorageUniversal: true });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing packages:',
+      expectedPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expectedPackages.join(' ')}`,
+    );
+  });
+
+  it('should install all selected packages when multiple options are true', async () => {
+    const expectedPackages = [
+      ...new Set([
+        ...expoCryptoUniversalPackages,
+        ...expoStorageUniversalPackages,
+        ...expoIcpHelpersPackages,
+        ...iiIntegrationHelpersPackages,
+        ...expoIcpAppConnectPackages,
+      ]),
+    ];
+    await setup({
+      iiIntegrationHelpers: true,
+      expoIcpHelpers: true,
+      expoIcpAppConnect: true,
+      expoCryptoUniversal: true,
+      expoStorageUniversal: true,
+    });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing packages:',
+      expectedPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expectedPackages.join(' ')}`,
     );
   });
 });

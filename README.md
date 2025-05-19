@@ -14,19 +14,27 @@ npx -p expo-icp@latest expo-icp <command> [options]
 
 Sets up a new project for Expo ICP integration packages. You can use the following options to install specific package sets:
 
-- `--ii-integration-helpers`: Install II integration helper packages
+- `--expo-crypto-universal`: Install Expo Crypto Universal packages
+- `--expo-storage-universal`: Install Expo Storage Universal packages
 - `--expo-icp-helpers`: Install Expo ICP helper packages
+- `--ii-integration-helpers`: Install II integration helper packages
 - `--expo-icp-app-connect`: Install Expo ICP app connect packages
 
 ```bash
 # Install all recommended packages
 npx -p expo-icp@latest expo-icp setup
 
-# Install only II integration helper packages
-npx -p expo-icp@latest expo-icp setup --ii-integration-helpers
+# Install only Expo Crypto Universal packages
+npx -p expo-icp@latest expo-icp setup --expo-crypto-universal
+
+# Install only Expo Storage Universal packages
+npx -p expo-icp@latest expo-icp setup --expo-storage-universal
 
 # Install only Expo ICP helper packages
 npx -p expo-icp@latest expo-icp setup --expo-icp-helpers
+
+# Install only II integration helper packages
+npx -p expo-icp@latest expo-icp setup --ii-integration-helpers
 
 # Install only Expo ICP app connect packages
 npx -p expo-icp@latest expo-icp setup --expo-icp-app-connect
@@ -45,40 +53,65 @@ npx -p expo-icp@latest expo-icp install
 
 The following packages are included in the default installation:
 
-- canister-manager
 - expo-crypto-universal
 - expo-crypto-universal-native
 - expo-crypto-universal-web
-- expo-icp-app-connect
-- expo-icp-app-connect-helpers
-- expo-icp-frontend-helpers
-- expo-ii-integration
 - expo-storage-universal
 - expo-storage-universal-native
 - expo-storage-universal-web
-
-#### II Integration Helper Packages
-
-When using `--ii-integration-helpers`, these packages are installed:
-
-- expo-icp-app-connect-helpers
 - expo-icp-frontend-helpers
-- ii-integration-helpers
+- canister-manager
+- expo-icp-app-connect-helpers
+- expo-icp-app-connect
+- expo-ii-integration
+
+#### Expo Crypto Universal Packages
+
+When using `--expo-crypto-universal`, these packages are installed:
+
+- expo-crypto-universal
+- expo-crypto-universal-native
+- expo-crypto-universal-web
+
+#### Expo Storage Universal Packages
+
+When using `--expo-storage-universal`, these packages are installed:
+
+- expo-storage-universal
+- expo-storage-universal-native
+- expo-storage-universal-web
 
 #### Expo ICP Helper Packages
 
 When using `--expo-icp-helpers`, these packages are installed:
 
+- canister-manager
 - expo-icp-app-connect-helpers
 - expo-icp-frontend-helpers
+
+#### II Integration Helper Packages
+
+When using `--ii-integration-helpers`, these packages are installed:
+
+- expo-icp-frontend-helpers
+- canister-manager
+- expo-icp-app-connect-helpers
+- ii-integration-helpers
 
 #### Expo ICP App Connect Packages
 
 When using `--expo-icp-app-connect`, these packages are installed:
 
-- expo-icp-app-connect
-- expo-icp-app-connect-helpers
+- expo-crypto-universal
+- expo-crypto-universal-native
+- expo-crypto-universal-web
+- expo-storage-universal
+- expo-storage-universal-native
+- expo-storage-universal-web
+- canister-manager
 - expo-icp-frontend-helpers
+- expo-icp-app-connect-helpers
+- expo-icp-app-connect
 
 ## Development
 

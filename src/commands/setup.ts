@@ -4,6 +4,8 @@ import {
   iiIntegrationHelpersPackages,
   expoIcpHelpersPackages,
   expoIcpAppConnectPackages,
+  expoCryptoUniversalPackages,
+  expoStorageUniversalPackages,
 } from './packages';
 
 /**
@@ -18,6 +20,17 @@ export type SetupOptions = {
    * Whether to install packages related to Expo ICP helpers.
    */
   expoIcpHelpers?: boolean;
+
+  /**
+   * Whether to install packages related to Expo storage universal.
+   */
+  expoStorageUniversal?: boolean;
+
+  /**
+   * Whether to install packages related to Expo crypto universal.
+   */
+  expoCryptoUniversal?: boolean;
+
   /**
    * Whether to install packages related to Expo ICP app connect.
    */
@@ -35,16 +48,29 @@ export type SetupCommand = (options: SetupOptions) => Promise<void>;
  * @returns The packages to install.
  */
 export const getPackages = (options: SetupOptions) => {
-  if (options.iiIntegrationHelpers) {
-    return iiIntegrationHelpersPackages;
+  const packages: string[] = [];
+
+  if (options.expoCryptoUniversal) {
+    packages.push(...expoCryptoUniversalPackages);
+  }
+  if (options.expoStorageUniversal) {
+    packages.push(...expoStorageUniversalPackages);
   }
   if (options.expoIcpHelpers) {
-    return expoIcpHelpersPackages;
+    packages.push(...expoIcpHelpersPackages);
+  }
+  if (options.iiIntegrationHelpers) {
+    packages.push(...iiIntegrationHelpersPackages);
   }
   if (options.expoIcpAppConnect) {
-    return expoIcpAppConnectPackages;
+    packages.push(...expoIcpAppConnectPackages);
   }
-  return defaultPackages;
+
+  if (packages.length === 0) {
+    return defaultPackages;
+  }
+
+  return [...new Set(packages)];
 };
 
 /**
