@@ -27,9 +27,10 @@ describe('buildProgram', () => {
     );
 
     const options = installCommand?.options || [];
-    expect(options).toHaveLength(2);
+    expect(options).toHaveLength(3);
     expect(options[0].long).toBe('--ii-integration-helpers');
     expect(options[1].long).toBe('--expo-icp-helpers');
+    expect(options[2].long).toBe('--expo-icp-app-connect');
   });
 
   it('should register setup command with correct options', () => {
@@ -44,8 +45,9 @@ describe('buildProgram', () => {
     );
 
     const options = setupCommand?.options || [];
-    expect(options).toHaveLength(2);
+    expect(options).toHaveLength(3);
     expect(options[0].long).toBe('--ii-integration-helpers');
     expect(options[1].long).toBe('--expo-icp-helpers');
+    expect(options[2].long).toBe('--expo-icp-app-connect');
   });
 });
