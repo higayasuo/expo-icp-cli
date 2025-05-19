@@ -1,12 +1,12 @@
 import { describe, it, expect, vi } from 'vitest';
 import { Command } from 'commander';
 import { buildSetupCommand } from '../buildSetupCommand';
-import { InstallCommand } from '../../commands/installCommon';
+import { SetupCommand } from '../../commands/setup';
 
 describe('buildSetupCommand', () => {
   it('should add setup command to program with correct options', () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand;
+    const mockSetup = vi.fn() as SetupCommand;
 
     buildSetupCommand(program, mockSetup);
 
@@ -25,7 +25,7 @@ describe('buildSetupCommand', () => {
 
   it('should set default values for options to false', () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand;
+    const mockSetup = vi.fn() as SetupCommand;
 
     buildSetupCommand(program, mockSetup);
 
@@ -38,7 +38,7 @@ describe('buildSetupCommand', () => {
 
   it('should set correct option descriptions', () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand;
+    const mockSetup = vi.fn() as SetupCommand;
 
     buildSetupCommand(program, mockSetup);
 
@@ -55,7 +55,7 @@ describe('buildSetupCommand', () => {
 
   it('should execute the setup action when command is run', async () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand & {
+    const mockSetup = vi.fn() as SetupCommand & {
       mock: { calls: any[][] };
     };
 
@@ -74,7 +74,7 @@ describe('buildSetupCommand', () => {
 
   it('should execute the setup action with iiIntegrationHelpers: true when command is run with --ii-integration-helpers', async () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand & {
+    const mockSetup = vi.fn() as SetupCommand & {
       mock: { calls: any[][] };
     };
 
@@ -98,7 +98,7 @@ describe('buildSetupCommand', () => {
 
   it('should execute the setup action with expoIcpHelpers: true when command is run with --expo-icp-helpers', async () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand & {
+    const mockSetup = vi.fn() as SetupCommand & {
       mock: { calls: any[][] };
     };
 
@@ -122,7 +122,7 @@ describe('buildSetupCommand', () => {
 
   it('should execute the setup action with expoIcpAppConnect: true when command is run with --expo-icp-app-connect', async () => {
     const program = new Command();
-    const mockSetup = vi.fn() as InstallCommand & {
+    const mockSetup = vi.fn() as SetupCommand & {
       mock: { calls: any[][] };
     };
 

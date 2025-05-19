@@ -34,24 +34,11 @@ npx -p expo-icp@latest expo-icp setup --expo-icp-app-connect
 
 ### install
 
-Updates outdated packages in an existing project. By default, it updates II integration packages. You can use the following options to update specific package sets:
-
-- `--ii-integration-helpers`: Update II integration helper packages
-- `--expo-icp-helpers`: Update Expo ICP helper packages
-- `--expo-icp-app-connect`: Update Expo ICP app connect packages
+Updates outdated packages in an existing project.
 
 ```bash
 # Update all outdated packages
 npx -p expo-icp@latest expo-icp install
-
-# Update only II integration helper packages
-npx -p expo-icp@latest expo-icp install --ii-integration-helpers
-
-# Update only Expo ICP helper packages
-npx -p expo-icp@latest expo-icp install --expo-icp-helpers
-
-# Update only Expo ICP app connect packages
-npx -p expo-icp@latest expo-icp install --expo-icp-app-connect
 ```
 
 #### Default Packages

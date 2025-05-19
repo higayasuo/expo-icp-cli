@@ -1,15 +1,17 @@
 import { execCommand } from '../utils/execCommand';
 import { getOutdatedPackages } from '../utils/getOutdatedPackages';
-import { InstallCommand, getPackages } from './installCommon';
+import { defaultPackages } from './packages';
+
+/**
+ * Command to install packages.
+ */
+export type InstallCommand = () => Promise<void>;
 
 /**
  * Installs packages based on the provided options.
- * @param options - The options for the install command.
  */
-export const install: InstallCommand = async (options) => {
-  const packages = getPackages(options);
-
-  const outdatedPackages = getOutdatedPackages(packages);
+export const install: InstallCommand = async () => {
+  const outdatedPackages = getOutdatedPackages(defaultPackages);
 
   if (outdatedPackages.length === 0) {
     console.log('No packages need to be installed.');

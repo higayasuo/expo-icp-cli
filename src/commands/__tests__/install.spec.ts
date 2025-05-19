@@ -22,10 +22,10 @@ describe('install command', () => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
   });
 
-  it('should install all default packages when no options provided', async () => {
+  it('should install all default packages', async () => {
     vi.mocked(getOutdatedPackages).mockReturnValue(defaultPackages);
 
-    await install({});
+    await install();
 
     expect(console.log).toHaveBeenCalledWith(
       'Installing outdated packages:',
@@ -36,40 +36,10 @@ describe('install command', () => {
     );
   });
 
-  it('should install only II integration helper packages when --ii-integration-helpers is true', async () => {
-    vi.mocked(getOutdatedPackages).mockReturnValue(
-      iiIntegrationHelpersPackages,
-    );
-
-    await install({ iiIntegrationHelpers: true });
-
-    expect(console.log).toHaveBeenCalledWith(
-      'Installing outdated packages:',
-      iiIntegrationHelpersPackages.join(', '),
-    );
-    expect(execCommand).toHaveBeenCalledWith(
-      `npm install ${iiIntegrationHelpersPackages.join(' ')}`,
-    );
-  });
-
-  it('should install only Expo ICP helper packages when --expo-icp-helpers is true', async () => {
-    vi.mocked(getOutdatedPackages).mockReturnValue(expoIcpHelpersPackages);
-
-    await install({ expoIcpHelpers: true });
-
-    expect(console.log).toHaveBeenCalledWith(
-      'Installing outdated packages:',
-      expoIcpHelpersPackages.join(', '),
-    );
-    expect(execCommand).toHaveBeenCalledWith(
-      `npm install ${expoIcpHelpersPackages.join(' ')}`,
-    );
-  });
-
   it('should not install any packages when no packages are outdated', async () => {
     vi.mocked(getOutdatedPackages).mockReturnValue([]);
 
-    await install({});
+    await install();
 
     expect(console.log).toHaveBeenCalledWith(
       'No packages need to be installed.',

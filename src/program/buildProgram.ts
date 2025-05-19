@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import packageJson from '../../package.json';
-import { InstallCommand } from '../commands/installCommon';
+import { InstallCommand } from '../commands/install';
+import { SetupCommand } from '../commands/setup';
 import { buildInstallCommand } from './buildInstallCommand';
 import { buildSetupCommand } from './buildSetupCommand';
 
@@ -11,7 +12,7 @@ type Commands = {
   /** Command for installing necessary packages */
   install: InstallCommand;
   /** Command for setting up the project */
-  setup: InstallCommand;
+  setup: SetupCommand;
 };
 
 /**

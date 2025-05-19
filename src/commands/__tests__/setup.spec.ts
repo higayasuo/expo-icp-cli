@@ -5,6 +5,7 @@ import {
   defaultPackages,
   iiIntegrationHelpersPackages,
   expoIcpHelpersPackages,
+  expoIcpAppConnectPackages,
 } from '../packages';
 
 vi.mock('../../utils/execCommand', () => ({
@@ -50,6 +51,18 @@ describe('setup command', () => {
     );
     expect(execCommand).toHaveBeenCalledWith(
       `npm install ${expoIcpHelpersPackages.join(' ')}`,
+    );
+  });
+
+  it('should install only Expo ICP app connect packages when --expo-icp-app-connect is true', async () => {
+    await setup({ expoIcpAppConnect: true });
+
+    expect(console.log).toHaveBeenCalledWith(
+      'Installing packages:',
+      expoIcpAppConnectPackages.join(', '),
+    );
+    expect(execCommand).toHaveBeenCalledWith(
+      `npm install ${expoIcpAppConnectPackages.join(' ')}`,
     );
   });
 });

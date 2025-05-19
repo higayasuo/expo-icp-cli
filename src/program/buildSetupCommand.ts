@@ -1,13 +1,13 @@
 import { Command } from 'commander';
-import { InstallCommand } from '../commands/installCommon';
+import { SetupCommand } from '../commands/setup';
 
 /**
  * Builds the setup command for the Expo ICP integration CLI tool.
  *
  * @param {Command} program - The commander program instance.
- * @param {InstallCommand} setup - The setup command action.
+ * @param {SetupCommand} setup - The setup command action.
  */
-export const buildSetupCommand = (program: Command, setup: InstallCommand) => {
+export const buildSetupCommand = (program: Command, setup: SetupCommand) => {
   program
     .command('setup')
     .description('Setup the project for Expo ICP integration')
