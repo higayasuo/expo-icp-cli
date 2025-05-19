@@ -17,5 +17,10 @@ export const buildSetupCommand = (program: Command, setup: InstallCommand) => {
       false,
     )
     .option('--expo-icp-helpers', 'Install Expo ICP helper packages', false)
+    .option(
+      '--expo-icp-app-connect',
+      'Install Expo ICP app connect packages',
+      false,
+    )
     .action(setup);
 };

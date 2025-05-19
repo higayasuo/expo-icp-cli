@@ -17,9 +17,10 @@ describe('buildSetupCommand', () => {
     );
 
     const options = setupCommand?.options || [];
-    expect(options).toHaveLength(2);
+    expect(options).toHaveLength(3);
     expect(options[0].long).toBe('--ii-integration-helpers');
     expect(options[1].long).toBe('--expo-icp-helpers');
+    expect(options[2].long).toBe('--expo-icp-app-connect');
   });
 
   it('should set default values for options to false', () => {
@@ -32,6 +33,7 @@ describe('buildSetupCommand', () => {
     const options = setupCommand?.options || [];
     expect(options[0].defaultValue).toBe(false);
     expect(options[1].defaultValue).toBe(false);
+    expect(options[2].defaultValue).toBe(false);
   });
 
   it('should set correct option descriptions', () => {
@@ -46,6 +48,9 @@ describe('buildSetupCommand', () => {
       'Install II integration helper packages',
     );
     expect(options[1].description).toBe('Install Expo ICP helper packages');
+    expect(options[2].description).toBe(
+      'Install Expo ICP app connect packages',
+    );
   });
 
   it('should execute the setup action when command is run', async () => {
@@ -62,6 +67,7 @@ describe('buildSetupCommand', () => {
     expect(callArgs[0]).toEqual({
       iiIntegrationHelpers: false,
       expoIcpHelpers: false,
+      expoIcpAppConnect: false,
     });
     expect(callArgs[1]).toBeInstanceOf(Command);
   });
@@ -85,6 +91,7 @@ describe('buildSetupCommand', () => {
     expect(callArgs[0]).toEqual({
       iiIntegrationHelpers: true,
       expoIcpHelpers: false,
+      expoIcpAppConnect: false,
     });
     expect(callArgs[1]).toBeInstanceOf(Command);
   });
@@ -108,6 +115,31 @@ describe('buildSetupCommand', () => {
     expect(callArgs[0]).toEqual({
       iiIntegrationHelpers: false,
       expoIcpHelpers: true,
+      expoIcpAppConnect: false,
+    });
+    expect(callArgs[1]).toBeInstanceOf(Command);
+  });
+
+  it('should execute the setup action with expoIcpAppConnect: true when command is run with --expo-icp-app-connect', async () => {
+    const program = new Command();
+    const mockSetup = vi.fn() as InstallCommand & {
+      mock: { calls: any[][] };
+    };
+
+    buildSetupCommand(program, mockSetup);
+
+    await program.parseAsync([
+      '/usr/local/bin/node',
+      '/path/to/cli',
+      'setup',
+      '--expo-icp-app-connect',
+    ]);
+    expect(mockSetup).toHaveBeenCalled();
+    const callArgs = mockSetup.mock.calls[0];
+    expect(callArgs[0]).toEqual({
+      iiIntegrationHelpers: false,
+      expoIcpHelpers: false,
+      expoIcpAppConnect: true,
     });
     expect(callArgs[1]).toBeInstanceOf(Command);
   });
