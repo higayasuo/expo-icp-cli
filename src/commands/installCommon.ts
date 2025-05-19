@@ -2,6 +2,7 @@ import {
   defaultPackages,
   iiIntegrationHelpersPackages,
   expoIcpHelpersPackages,
+  expoIcpAppConnectPackages,
 } from './packages';
 
 /**
@@ -16,6 +17,10 @@ export type InstallOptions = {
    * Whether to install Expo ICP helpers.
    */
   expoIcpHelpers?: boolean;
+  /**
+   * Whether to install Expo ICP app connect packages.
+   */
+  expoIcpAppConnect?: boolean;
 };
 
 /**
@@ -34,6 +39,9 @@ export const getPackages = (options: InstallOptions) => {
   }
   if (options.expoIcpHelpers) {
     return expoIcpHelpersPackages;
+  }
+  if (options.expoIcpAppConnect) {
+    return expoIcpAppConnectPackages;
   }
   return defaultPackages;
 };

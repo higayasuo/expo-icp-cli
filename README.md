@@ -12,10 +12,11 @@ npx -p expo-icp@latest expo-icp <command> [options]
 
 ### setup
 
-Sets up a new project for Expo ICP integration by installing all recommended packages. You can use the following options to install specific package sets:
+Sets up a new project for Expo ICP integration packages. You can use the following options to install specific package sets:
 
-- `--ii-integration-helpers`: Install only II integration helper packages
-- `--expo-icp-helpers`: Install only Expo ICP helper packages
+- `--ii-integration-helpers`: Install II integration helper packages
+- `--expo-icp-helpers`: Install Expo ICP helper packages
+- `--expo-icp-app-connect`: Install Expo ICP app connect packages
 
 ```bash
 # Install all recommended packages
@@ -26,14 +27,18 @@ npx -p expo-icp@latest expo-icp setup --ii-integration-helpers
 
 # Install only Expo ICP helper packages
 npx -p expo-icp@latest expo-icp setup --expo-icp-helpers
+
+# Install only Expo ICP app connect packages
+npx -p expo-icp@latest expo-icp setup --expo-icp-app-connect
 ```
 
 ### install
 
-Updates outdated packages in an existing project. By default, it updates all required packages. You can use the following options to update specific package sets:
+Updates outdated packages in an existing project. By default, it updates II integration packages. You can use the following options to update specific package sets:
 
-- `--ii-integration-helpers`: Update only II integration helper packages
-- `--expo-icp-helpers`: Update only Expo ICP helper packages
+- `--ii-integration-helpers`: Update II integration helper packages
+- `--expo-icp-helpers`: Update Expo ICP helper packages
+- `--expo-icp-app-connect`: Update Expo ICP app connect packages
 
 ```bash
 # Update all outdated packages
@@ -44,6 +49,9 @@ npx -p expo-icp@latest expo-icp install --ii-integration-helpers
 
 # Update only Expo ICP helper packages
 npx -p expo-icp@latest expo-icp install --expo-icp-helpers
+
+# Update only Expo ICP app connect packages
+npx -p expo-icp@latest expo-icp install --expo-icp-app-connect
 ```
 
 #### Default Packages
@@ -74,6 +82,14 @@ When using `--ii-integration-helpers`, these packages are installed:
 
 When using `--expo-icp-helpers`, these packages are installed:
 
+- expo-icp-app-connect-helpers
+- expo-icp-frontend-helpers
+
+#### Expo ICP App Connect Packages
+
+When using `--expo-icp-app-connect`, these packages are installed:
+
+- expo-icp-app-connect
 - expo-icp-app-connect-helpers
 - expo-icp-frontend-helpers
 

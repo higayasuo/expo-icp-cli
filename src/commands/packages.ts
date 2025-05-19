@@ -18,6 +18,12 @@ export const iiIntegrationHelpersPackages = [
   'ii-integration-helpers',
 ];
 
+export const expoIcpAppConnectPackages = [
+  'expo-icp-app-connect',
+  'expo-icp-app-connect-helpers',
+  'expo-icp-frontend-helpers',
+];
+
 export const expoIcpHelpersPackages = [
   'expo-icp-app-connect-helpers',
   'expo-icp-frontend-helpers',
