@@ -40,9 +40,11 @@ describe('buildProgram', () => {
     );
 
     const options = setupCommand?.options || [];
-    expect(options).toHaveLength(3);
-    expect(options[0].long).toBe('--ii-integration-helpers');
-    expect(options[1].long).toBe('--expo-icp-helpers');
-    expect(options[2].long).toBe('--expo-icp-app-connect');
+    expect(options).toHaveLength(5);
+    expect(options[0].long).toBe('--expo-crypto-universal');
+    expect(options[1].long).toBe('--expo-storage-universal');
+    expect(options[2].long).toBe('--expo-icp-helpers');
+    expect(options[3].long).toBe('--ii-integration-helpers');
+    expect(options[4].long).toBe('--expo-icp-app-connect');
   });
 });
