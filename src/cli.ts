@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { install } from './commands/install';
+import { install } from './commands/update';
 import { setup } from './commands/setup';
 import { buildProgram } from './program/buildProgram';
 

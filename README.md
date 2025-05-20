@@ -40,12 +40,15 @@ npx -p expo-icp@latest expo-icp setup --ii-integration-helpers
 npx -p expo-icp@latest expo-icp setup --expo-icp-app-connect
 ```
 
-### install
+### update
 
-Updates outdated packages in an existing project.
+Updates outdated packages in an existing project. You can also use `install` as an alias for this command.
 
 ```bash
 # Update all outdated packages
+npx -p expo-icp@latest expo-icp update
+
+# Or using the install alias
 npx -p expo-icp@latest expo-icp install
 ```
 

@@ -1,16 +1,16 @@
 import { Command } from 'commander';
 import packageJson from '../../package.json';
-import { InstallCommand } from '../commands/install';
+import { UpdateCommand } from '../commands/update';
 import { SetupCommand } from '../commands/setup';
-import { buildInstallCommand } from './buildInstallCommand';
+import { buildUpdateCommand } from './buildUpdateCommand';
 import { buildSetupCommand } from './buildSetupCommand';
 
 /**
  * Type definition for available commands in the CLI
  */
 type Commands = {
-  /** Command for installing necessary packages */
-  install: InstallCommand;
+  /** Command for updating necessary packages */
+  update: UpdateCommand;
   /** Command for setting up the project */
   setup: SetupCommand;
 };
@@ -37,7 +37,7 @@ export const buildProgram = (commands: Commands) => {
     .description('CLI tool for Expo ICP integration')
     .version(packageJson.version);
 
-  buildInstallCommand(program, commands.install);
+  buildUpdateCommand(program, commands.update);
   buildSetupCommand(program, commands.setup);
 
   return program;
