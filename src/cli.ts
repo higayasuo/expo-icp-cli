@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import { install } from './commands/update';
+import { update } from './commands/update';
 import { setup } from './commands/setup';
 import { buildProgram } from './program/buildProgram';
 
@@ -10,6 +9,6 @@ if (
   import.meta.url.startsWith('file://') &&
   process.env.NODE_ENV !== 'test'
 ) {
-  const program = buildProgram({ install, setup });
+  const program = buildProgram({ update, setup });
   program.parse();
 }
