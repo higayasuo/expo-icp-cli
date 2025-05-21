@@ -38,6 +38,7 @@ export const iiIntegrationHelpersPackages = [
  */
 export const expoIcpAppConnectPackages = [
   'expo-icp-app-connect',
+  'expo-error-toast',
   ...expoIcpHelpersPackages,
   ...expoCryptoUniversalPackages,
   ...expoStorageUniversalPackages,

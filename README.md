@@ -66,6 +66,7 @@ The following packages are included in the default installation:
 - canister-manager
 - expo-icp-app-connect-helpers
 - expo-icp-app-connect
+- expo-error-toast
 - expo-ii-integration
 
 #### Expo Crypto Universal Packages
@@ -115,6 +116,7 @@ When using `--expo-icp-app-connect`, these packages are installed:
 - expo-icp-frontend-helpers
 - expo-icp-app-connect-helpers
 - expo-icp-app-connect
+- expo-error-toast
 
 ## Development
 
