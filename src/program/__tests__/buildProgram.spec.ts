@@ -47,4 +47,42 @@ describe('buildProgram', () => {
     expect(options[3].long).toBe('--ii-integration-helpers');
     expect(options[4].long).toBe('--expo-icp-app-connect');
   });
+
+  it('should handle unknown options', async () => {
+    const mockUpdate = vi.fn() as UpdateCommand;
+    const mockSetup = vi.fn() as SetupCommand;
+    const program = buildProgram({ update: mockUpdate, setup: mockSetup });
+
+    const processExitSpy = vi
+      .spyOn(process, 'exit')
+      .mockImplementation(() => undefined as never);
+
+    await program.parseAsync([
+      '/usr/local/bin/node',
+      '/path/to/cli',
+      'setup',
+      '--unknown-option',
+    ]);
+
+    expect(processExitSpy).toHaveBeenCalledWith(1);
+  });
+
+  it('should handle excess arguments', async () => {
+    const mockUpdate = vi.fn() as UpdateCommand;
+    const mockSetup = vi.fn() as SetupCommand;
+    const program = buildProgram({ update: mockUpdate, setup: mockSetup });
+
+    const processExitSpy = vi
+      .spyOn(process, 'exit')
+      .mockImplementation(() => undefined as never);
+
+    await program.parseAsync([
+      '/usr/local/bin/node',
+      '/path/to/cli',
+      'setup',
+      'aaa',
+    ]);
+
+    expect(processExitSpy).toHaveBeenCalledWith(1);
+  });
 });

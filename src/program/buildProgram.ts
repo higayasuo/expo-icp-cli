@@ -35,7 +35,9 @@ export const buildProgram = (commands: Commands) => {
   program
     .name('expo-icp')
     .description('CLI tool for Expo ICP integration')
-    .version(packageJson.version);
+    .version(packageJson.version)
+    .allowUnknownOption(false)
+    .allowExcessArguments(false);
 
   buildUpdateCommand(program, commands.update);
   buildSetupCommand(program, commands.setup);
